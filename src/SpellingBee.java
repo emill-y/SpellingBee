@@ -45,6 +45,7 @@ public class SpellingBee {
         // Call Helper Generate Function that Accepts the Letters
         // And also accepts if the letter has been utilized yet or not (to avoid repetition and infinite recursion)
         generate("", letters, new boolean[letters.length()]);
+        //generateMultipleLetters("",letters,new int[letters.length()]);
     }
 
     public void generate(String substring, String leftover, boolean[] used){
@@ -64,6 +65,24 @@ public class SpellingBee {
             used[i] = false;
         }
     }
+
+    public void generateMultipleLetters(String substring, String leftover, int[] timesUsed){
+        // Adds the generated substring if it exists, and is not aldready present in the Array List
+        if (!substring.isEmpty() && !words.contains(substring)) {
+            words.add(substring);
+        }
+        // Only will run if there are still characters leftover to form permutations with
+        // Hence preventing Stack Overflow
+
+        for (int i = 0; i < leftover.length(); i++) {
+            // Skip already used characters (To Avoid Infinite Recursion + Repetition)
+            // Recursively With Unused Letter Added to Substring
+            if (timesUsed[i] > 3) continue;
+            generateMultipleLetters(substring + leftover.charAt(i), leftover, timesUsed);
+
+        }
+    }
+
 
     public void sort() {
         // Recursively Calls MergeSort Method
