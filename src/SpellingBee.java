@@ -97,7 +97,7 @@ public class SpellingBee {
         int a = 0, b = 0;
         // Three While Statements- 2 Will Be run
         while (a < arr1.size() && b < arr2.size()) {
-            if (arr1.get(a).compareTo(arr2.get(b)) > 0) {
+            if (arr1.get(a).compareTo(arr2.get(b)) < 0) {
                 merged.add(arr1.get(a));
                 a++;
             }
